@@ -1,0 +1,46 @@
+NAT GATEWAY
+
+1.The main moto of every company is to make their data secure.
+  In order to do so they should secure their database server.
+2.IN the diagram we have two subnets...one is Private subnet(Database server)
+  and the other is Public subnet(management server)
+3.If we put both the servers in one subnet only, then the database server 
+  will be directly connected to the external world,bcz it is directly connected 
+  to igw
+4.so put the database server in other subnet such that no one can access the data.
+5.If in case if database server need to download any applications that it requires it
+  is connected to NAT GATEWAY..via EIP and through the public subnet to igw and to the google.
+  It is connected in this process and it downloads its required application.
+6.In order to enter into the database server we cannot directly login into the dataserver,
+  in order to do so
+  we first login to management server and from their if you ping data server it responds                
+  but couldnot download any application,bcz it requires a key to login .
+    ______ HOW TO CREATE A KEY_________
+7.from management server 
+  ssh ec2-user@ip of database
+ here we took 10.5.5.100
+  
+  * ssh ec2-user@10.5.5.100
+
+Now here it asks for key then
+ 
+  * nano mykey.pem
+        paste the key
+        cntrl + o ----> enter -----> cntrl + x
+  
+  * ssh -i mykey.pem ec2-user@10.5.5.100
+
+  now it shows accesss denied .plz be secure about the key.
+  then in order to make secure of your key 
+  
+  * chmod 400 mykey.pem
+
+  * ll
+
+  * ssh -i mykey.pem ec2-user@10.5.5.100
+
+  now prompt shifts to 10.5.5.100 form 10.5.1.100
+
+  now ping google from 10.5.5.100 now it works.
+  
+   

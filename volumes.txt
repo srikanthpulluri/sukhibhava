@@ -1,0 +1,97 @@
+-------------volumes---------
+harddisks
+
+ide---------------/dev/hda
+
+scsi disk --------/dev/sda
+
+vd ---------------/dev/vda
+                    or
+                  /dev/xvda
+
+in order to do so first 
+ 
+1.partition
+   lsblk
+   fdisk /dev/xvdf  
+ 
+   m --help , n --new partition--enter --primary p--type then enter enter enter
+   p --for print
+   w ---for save
+ 
+   lsblk
+
+   fdisk /dev/xvdg
+    
+   m --help , n --new partition--enter --primary p--type then enter enter enter
+   p --for print
+   w ---for save
+ 
+   lsblk
+   
+------------------------------------------------------  
+mount /dev/xvdf1/   /5gbvol/
+df -h
+
+mount /dev/xvdg1/   /8gbvol/
+df -h
+--------------------------------------------------------
+
+cat /etc/fstab 
+
+nano /etc/fstab
+/dev/xvdf1 /5gbvol ext3 default 0 0 
+----------------------------------------------------------
+
+after mounting only you should copy 
+
+mount /dev/xvdf1/   /5gbvol/
+cp -rf /ephermal/media0/testing  /5gbvol/ /8gbvol/ 
+
+2.format
+
+         ext3
+         ext4
+         xfs
+
+   mkfs.ext3 /dev/xvdf1
+  
+3.mount
+
+mount /dev/xvdf1/   /5gbvol/
+df -h
+ 
+or
+
+sudo mount /dev/xvdf1 /5gbvol -t ext3
+
+
+4.labelling
+
+inorder to hard core
+
+cat /etc/fstab
+
+nano /etc/fstab
+
+for resize we use
+
+growpart /dev/xvdf 1
+
+inorder to update to kernal 
+
+resize2fs /dev/xvdf1
+
+--------------------------------------------
+
+
+fdisk /dev/xvdf  
+mkfs.ext3 /dev/xvdf1
+mount /dev/xvdf1/   /5gbvol/
+cp -rf /ephermal/media0/testing  /5gbvol/ 
+df -h
+cat /etc/fstab
+nano /etc/fstab
+/dev/xvdf1 /5gbvol ext3 default 0 0
+ 
+

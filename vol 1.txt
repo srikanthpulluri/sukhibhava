@@ -1,0 +1,18 @@
+elastic block storage(EBS)----stores in blocks...like harddisk
+
+1.it can be increased or decreased
+2.it is persistant/permant storage
+3.we have different types of storage
+
+instance storage
+1.its fixed storage
+2.it is only ssd
+3.it is ephermal/temporary storage
+
+
+
+elastic file system(efs)----stores files
+
+simple storage service(s3)---object storage ...like google drive
+
+glacier..which is archieve storage
